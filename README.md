@@ -6,7 +6,7 @@ Written in Python.
 We plan to create a program which will continuously search for new properties under certain parameters such as price or area.
 
 
-###**Implementation**
+### **Implementation**
 It will make use or the BeautifulSoup library to parse HTML and Splinter or Requests to handle submit forms.
 
 ### **TODO**
