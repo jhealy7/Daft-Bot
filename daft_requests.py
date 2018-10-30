@@ -5,5 +5,5 @@ fp = urllib.request.urlopen("https://www.daft.ie/dublin-city/residential-propert
 soup = BeautifulSoup(fp,'html.parser')
 
 fp.close()
-
-print(soup.prettify())
+print(soup.tr.h2.a)
+#print(soup.prettify())
