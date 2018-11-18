@@ -1,3 +1,6 @@
+import json
+import os
+import sys
 from tkinter import *
 from tkinter import ttk
 
@@ -17,7 +20,7 @@ Label(master, background="#6ffc6e", font ="Verdana 10 bold", text="URL").place(x
 e1=Entry(master, background='#ffffff')
 e2=Entry(master, background="#ffffff")
 e3=Entry(master, background="#ffffff")
-e4=Text(master, background="#ffffff")
+e4=Entry(master, background="#ffffff")
 e5=Entry(master,background="#ffffff")
 
 e1.place(x=450, y=75, width=150)
@@ -26,7 +29,28 @@ e3.place(x=450, y=175, width=150)
 e4.place(x=375, y=275, width=300, height=150)
 e5.place(x=450, y=225, width=150)
 
-button=Button(master, text="Start Bot")
-button.place(x=500, y=450)
+def saveinfo():
+    data = {}
+    data['userinfo']=[]
+    data['userinfo'].append({
+    'url':e1.get(),
+    'name':e2.get(),
+    'email':e3.get(),
+    'phone':e5.get(),
+    'message':e4.get()
+    })
+    with open('data.txt', 'w') as outfile:
+        json.dump(data, outfile)
+
+
+def endscreen():
+        master.destroy()
+
+
+
+Button(master, text="Save Details", command=saveinfo).place(x=500, y=450, width=75)
+Button(master, text="Start Bot",command=endscreen).place(x=500, y=500, width=75)
 
 mainloop()
+
+os.system('app.py')
