@@ -35,6 +35,28 @@ class DaftScraper(object):
         print('Adding current properties to program memory')
         property_urls = self.get_properties_urls()
         [self.property_list.append(url) for url in property_urls]
+        
+    def monitor(self):
+        """
+        Visit the url every few seconds to check if new properties were added
+        """
+        while True:
+            print('Checking for new properties')
+            self.check_for_new_properties()
+            time.sleep(INTERVAL)
+
+    def check_for_new_properties(self):
+        """
+        Checks if new property url appeared in the results, and sends post request if yes
+        """
+        property_urls = self.get_properties_urls()
+
+        for url in property_urls:
+            if url not in self.property_list:
+                print('Found new property...messaging', url)
+                self.message_property(url)
+                self.property_list.append(url)
+        
 
     @staticmethod
     def get_properties_urls():
