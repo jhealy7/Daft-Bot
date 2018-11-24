@@ -57,7 +57,32 @@ class DaftScraper(object):
                 self.message_property(url)
                 self.property_list.append(url)
         
+    @staticmethod
+    def message_property(url):
+        """
+        Get propetry and agent id, then send post request to contact form
+        :param url: Property url
+        """
+        r = make_request(url)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        property_id = soup.find('input', {'id': 'ad_id'})['value']
+        agent_id = soup.find('input', {'id': 'agent_id'})['value']
 
+        post_request_url = 'https://www.daft.ie/ajax_endpoint.php'
+        payload = {
+            'action': 'daft_contact_advertiser',
+            'from': NAME,
+            'email': EMAIL,
+            'message': MESSAGE,
+            'contact_number': PHONE,
+            'type': 'rental',
+            'id': property_id,
+            'self_copy': '',
+            'agent_id': agent_id
+        }
+        make_request(post_request_url, "POST", payload)
+        
+        
     @staticmethod
     def get_properties_urls():
         """
