@@ -3,7 +3,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
-from config import *
+from Config import *
 
 
 def make_request(url, method="GET", payload=None):
