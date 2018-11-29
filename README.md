@@ -3,12 +3,15 @@
 
 ### **Description**
 Written in Python.
-We plan to create a program which will continuously search for new properties under certain parameters, such as price or area and send a defined message to the landlord.
+We created a program which will continuously search for new properties given a user specified URL and send the users details to the landlord.
 
 
 ### **Implementation**
-It will make use or the BeautifulSoup library to parse HTML and Splinter or Requests to handle submit forms.
+It makes use of requests and beautiful soup. The properties are stored and checked every two minutes to check if a new property has been added.
 
-### **TODO**
-- Get BeautifulSoup working and grabbing correct URl's and selecting correct tags.
-- Create mock up of GUI and submission forms.
+###**How to Use**
+Run UIPrototype
+Fill in required details
+Click save details followed by start bot.
+
+
